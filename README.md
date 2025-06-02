@@ -1,6 +1,6 @@
 # playwright-countriestrevorblade_api
 
-GraphQl API testing in [Trevorblades Countries](https://trevorblades.github.io/countries/queries/continent). This project contains basic examples on how to use playwright to test GraphQl API tests. Good practices such as hooks, custom commands and tags, among others, are used. All the necessary support documentation to develop this project is placed here. It deals with parallel test execution by creating one .json file for each test so we can share data between different requests in the test. The .json file is excluded after each test execution. 
+GraphQl API testing in [Trevorblades Countries](https://trevorblades.github.io/countries/queries/continent). This project contains basic examples on how to use playwright to test GraphQl API tests. Good practices such as hooks, custom commands and tags, among others, are used. All the necessary support documentation to develop this project is placed here.
 
 # Pre-requirements:
 
