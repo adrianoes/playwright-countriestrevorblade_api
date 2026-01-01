@@ -23,6 +23,25 @@ test.describe('Countries GraphQL API - Negative Tests', () => {
     expect(json.data.country).toBeNull();
   });
 
+  test('Should return null for lowercase country code', async ({ request }) => {
+    const query = `
+      query {
+        country(code: "us") {
+          name
+        }
+      }
+    `;
+
+    const res = await request.post(API_URL, {
+      data: { query },
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const json = await res.json();
+    expect(res.status()).toBe(200);
+    expect(json.data.country).toBeNull();
+  });
+
   test('Should return error for invalid field in country query', async ({ request }) => {
     const query = `
       query {

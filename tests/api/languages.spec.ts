@@ -58,9 +58,37 @@ test.describe('Languages GraphQL API - Positive Tests', () => {
     const lang = json.data.language;
 
     expect(lang.code).toBe('pt');
-    expect(typeof lang.name).toBe('string');
-    expect(typeof lang.native).toBe('string');
-    expect(typeof lang.rtl).toBe('boolean');
+    expect(lang.name).toBe('Portuguese');
+    expect(lang.native).toBeTruthy();
+    expect(lang.rtl).toBe(false);
+  });
+
+  test('Should return English language by code', async ({ request }) => {
+    // Deterministic lookup for language EN
+    const query = `
+      query {
+        language(code: "en") {
+          code
+          name
+          native
+          rtl
+        }
+      }
+    `;
+
+    const res = await request.post(API_URL, {
+      data: { query },
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    expect(res.status()).toBe(200);
+    const json = await res.json();
+    const lang = json.data.language;
+
+    expect(lang.code).toBe('en');
+    expect(lang.name).toBe('English');
+    expect(lang.native).toBe('English');
+    expect(lang.rtl).toBe(false);
   });
 
 });

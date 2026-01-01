@@ -9,7 +9,10 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^9.8.0",
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "^1.57.0",
     "@types/node": "^22.15.29"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
   }
 }

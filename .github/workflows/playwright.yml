@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Create .env from secret
+      run: |
+        echo "${{ secrets.JIRA_API_SECRET }}" > .env
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*

@@ -8,7 +8,8 @@ GraphQl API testing in [Trevorblades Countries](https://trevorblades.github.io/c
 | :---------------------------- |:--------| :---------------------------------------------------------------|
 | Node.js                       | 18.18.0 | -                                                               |
 | npm                           | 10.2.4  | -                                                               |
-| Playwright                    | 1.52.0  |                                                                 |
+| Playwright                    | 1.57.0  |                                                                 |
+| dotenv                        | 17.2.3  | Required for loading .env variables in config.                  |
 | Visual Studio Code            | 1.89.1  | -                                                               |
 | Playwright Test for VSCode    | 1.1.14  | Optional. Recommended so you can run tests in VSC.              |               
 
@@ -20,6 +21,7 @@ GraphQl API testing in [Trevorblades Countries](https://trevorblades.github.io/c
   - Hit :point_right:**Enter** to put your end-to-end tests in \tests.
   - Hit :point_right:**y** to add a GitHub Actions workflow.
   - Hit :point_right:**Enter** to install Playwright browsers.
+- Execute ```npm install dotenv``` to install dotenv package for loading environment variables from .env file.
 - See [Visual Studio Code page](https://code.visualstudio.com/) and install the latest VSC stable version. Keep all the prefereced options as they are until you reach the possibility to check the checkboxes below: 
   - :white_check_mark: Add "Open with code" action to Windows Explorer file context menu. 
   - :white_check_mark: Add "Open with code" action to Windows Explorer directory context menu.

@@ -27,6 +27,34 @@ test.describe('Continents GraphQL API', () => {
     expect(json.data.continent.name).toBe('Europe');
   });
 
+  test('Should fetch Africa by code', async ({ request }) => {
+    // Specific continent lookup to validate deterministic response
+    const query = `
+      query {
+        continent(code: "AF") {
+          code
+          name
+          countries {
+            code
+          }
+        }
+      }
+    `;
+
+    const res = await request.post(API_URL, {
+      data: { query },
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    expect(res.status()).toBe(200);
+    const json = await res.json();
+    expect(json.data.continent.code).toBe('AF');
+    expect(json.data.continent.name).toBe('Africa');
+    expect(Array.isArray(json.data.continent.countries)).toBe(true);
+    expect(json.data.continent.countries.length).toBeGreaterThan(0);
+    expect(json.data.continent.countries.some((c: { code: string }) => c.code === 'NG')).toBe(true);
+  });
+
   test('Should return all continents with code and name', async ({ request }) => {
     // Check that all continents are returned with valid name and code
     const query = `

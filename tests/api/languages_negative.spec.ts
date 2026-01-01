@@ -23,6 +23,25 @@ test.describe('Languages GraphQL API - Negative Tests', () => {
     expect(json.data.language).toBeNull();
   });
 
+  test('Should return null for uppercase language code', async ({ request }) => {
+    const query = `
+      query {
+        language(code: "EN") {
+          name
+        }
+      }
+    `;
+
+    const res = await request.post(API_URL, {
+      data: { query },
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const json = await res.json();
+    expect(res.status()).toBe(200);
+    expect(json.data.language).toBeNull();
+  });
+
   test('Should return error for invalid field in language query', async ({ request }) => {
     const query = `
       query {

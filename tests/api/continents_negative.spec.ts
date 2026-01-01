@@ -23,6 +23,25 @@ test.describe('Continents GraphQL API - Negative Tests', () => {
     expect(json.data.continent).toBeNull();
   });
 
+  test('Should return null for lowercase continent code', async ({ request }) => {
+    const query = `
+      query {
+        continent(code: "af") {
+          name
+        }
+      }
+    `;
+
+    const res = await request.post(API_URL, {
+      data: { query },
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const json = await res.json();
+    expect(res.status()).toBe(200);
+    expect(json.data.continent).toBeNull();
+  });
+
   test('Should return error when using incorrect field name in query', async ({ request }) => {
     const query = `
       query {

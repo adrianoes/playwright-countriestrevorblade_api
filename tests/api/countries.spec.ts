@@ -67,4 +67,33 @@ test.describe('Countries GraphQL API - Positive Tests', () => {
     }
   });
 
+  test('Should return a specific country by code (US)', async ({ request }) => {
+    // Focused lookup to ensure stable country response
+    const query = `
+      query {
+        country(code: "US") {
+          code
+          name
+          capital
+          currency
+        }
+      }
+    `;
+
+    const res = await request.post(API_URL, {
+      data: { query },
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    expect(res.status()).toBe(200);
+    const json = await res.json();
+    const country = json.data.country;
+
+    expect(country.code).toBe('US');
+    expect(country.name).toBe('United States');
+    expect(typeof country.capital).toBe('string');
+    expect(country.capital).toContain('Washington');
+    expect(country.currency).toBe('USD,USN,USS');
+  });
+
 });
